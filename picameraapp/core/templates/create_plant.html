@@ -1,0 +1,29 @@
+{% extends 'base_admin.html' %}
+{% block title %}Growth - Add Plant{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="container" style="text-align: center;">
+        <h1>Add a plant</h1>
+        <i class="fas fa-leaf fa-9x"></i>
+    </div>
+    <div class="container">
+        <form class="" method="post">
+            <div class="form-group">
+                {% csrf_token %}
+                <label for="email">Name:</label>
+                {{form.name}}
+            </div>
+            <div class="form-group">
+                {% csrf_token %}
+                <label for="email">Description:</label>
+                {{form.description}}
+            </div>
+            <div class="form-group">
+                <div class="col-sm">
+                    <input type="submit" name="" value="Create" class="btn btn-primary float-right">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

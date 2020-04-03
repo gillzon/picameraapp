@@ -1,0 +1,60 @@
+.btn-primary {
+    color: #fff;
+    background-color: #5c8d89;
+    border-color: #5c8d89;
+}
+
+.fa-leaf {
+    color: #74b49b;
+}
+
+.h1,
+h1 {
+    margin-top: 3rem;
+    font-size: 2.5rem;
+    color: #74b49b;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: 30px;
+}
+
+.bg-dark {
+    background-color: #5c8d89 !important;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .700rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #f4f9f4;
+}
+
+body {
+    background: #f4f9f4;
+    font-family: AbrilFatface;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #f67575;
+    border-radius: .3rem;
+    text-align: center;
+}
+.navbar-collapse.collapse.in {
+  display: block!important;
+}

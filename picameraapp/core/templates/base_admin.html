@@ -1,0 +1,46 @@
+{% load static %}
+{% load tz %}
+{% timezone "Europe/Stockholm" %}
+<html>
+
+<head>
+    <title>{% block title %} Dashboard | Growth {% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/base.css' %}">
+    <style type="text/css" media="screen">
+    @font-face {
+        font-family: 'AbrilFatface';
+        src: local('AbrilFatface'),
+        url('{% static 'fonts/IndieFlower-Regular.ttf' %}');
+    }
+    </style>
+    <!--Custom styles-->
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" href="#">Growth</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'core:loggedin' %}"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'core:add_plant' %}"><i class="fab fa-pagelines"></i> Add Plant</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="content-wrapper">
+    {% block content %}
+    if you se this something is wrong
+    {% endblock content %}
+</div>
+{% endtimezone %}

@@ -1,33 +1,69 @@
-{% extends 'base.html' %}
+{% extends 'base_admin.html' %}
 {% block title %}Growth - Login{% endblock title %}
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+<style type="text/css" media="screen">
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    margin: 15px;
+
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 5px 16px;
+}
+
+h3 {
+    margin-left: 15px;
+}
+
+h3 {
+    margin-left: 15px;
+}
+</style>
+<div class="row">
+    <div class="col-lg">
+        <div class="card">
+            <h3>Total Pictures: </h3>
+            <div class="container">
+                <h4><b>John Doe</b></h4>
+                <p>Architect & Engineer</p>
+            </div>
         </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+    </div>
+    <div class="col-lg">
+        <div class="card">
+            <h3>Total Days Documented: </h3>
+            <div class="container">
+                <h4><b>John Doe</b></h4>
+                <p>Architect & Engineer</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="overflow-x:auto;">
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Points</th>
+            <th>Points</th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+            <td>50</td>
+            <td>50</td>
+        </tr>
+    </table>
+</div>
 {% endblock content %}

@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-lg">
         <div class="card">
-            <h3>Total Pictures: </h3>
+            <h3>Total Pictures: <b>{{get_total_plants.the_sum}}</b></h3>
             <div class="container">
                 <h4><b>John Doe</b></h4>
                 <p>Architect & Engineer</p>
@@ -38,7 +38,9 @@
             <td>{{plant.description}}</td>
             <td>{{plant.created_at}}</td>
             <td>{{plant.total_pictures}}</td>
-            <td><<a href="{% url 'core:upload_photo'  %}" "email me">email me</a></td>
+            <td><a href="{% url 'core:upload_photo' plant.id %}">Uppload Photo</a></td>
+            <td><a href="{% url 'core:delete_plant' plant.id %}">Delete Plant</a></td>
+            
         </tr>
         {% endfor %}
     </table>

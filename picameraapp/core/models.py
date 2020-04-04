@@ -4,10 +4,13 @@ from django.core.validators import FileExtensionValidator
 import string, random, piexif, os
 from uuid import uuid4
 from django.conf import settings
+from PIL import Image
+
 # Create your models here.
 def path_and_rename(instance, filename):
-    room_code = instance.beerroom.room_code
-    upload_to = 'images/{room_code}'.format(room_code=room_code)
+    #room_code = instance.beerroom.room_code
+    pk = instance.user_id
+    upload_to = 'images/{id}'.format(id=pk)
     ext = filename.split('.')[-1]
     # get filename
     if instance.pk:
@@ -34,11 +37,11 @@ class Photos(models.Model):
 
 
     def __str__(self):
-        return self.id + self.beerroom
+        return self.id + self.user
 
     def save(self, *args, **kwargs):
         super(Photos, self).save(*args, **kwargs)
-        print("partyroom",self.beerroom.room_code)
+        print("partyroom",self.user.id)
         #img = Image.open(self.photo_room_image.path)
         img = Image.open(self.photo_room_image.path)
         if "exif" in img.info:

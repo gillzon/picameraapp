@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Plant
+from .models import Plant, Photos
 
 
 
@@ -15,3 +15,8 @@ class AddPlantForm(forms.ModelForm):
 	class Meta:
 		model = Plant
 		fields = ['name','description']
+
+class UploadPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photos
+        fields = ['photo_room_image']

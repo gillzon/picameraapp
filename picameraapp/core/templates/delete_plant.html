@@ -1,0 +1,15 @@
+{% extends 'base_admin.html' %}
+{% block title %}Growth - Delete Plant{% endblock title %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="container py-5">
+    <form class="" action="." method="post">
+        <h1>Confirm Delete</h1>
+        {%csrf_token%}
+        <div class="form-actions">
+            <input type="submit" name="" value="Delete" class="btn btn-primary">
+            <a href="{% url 'core:loggedin' %}" class="btn btn-info">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

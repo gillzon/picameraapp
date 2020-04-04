@@ -58,3 +58,41 @@ body {
 .navbar-collapse.collapse.in {
   display: block!important;
 }
+
+th {
+    text-align: inherit;
+    margin: 20rem;
+    padding-right: 2rem;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    margin: 20rem;
+    padding-right: 2rem;
+    font-size: 2rem;
+}
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    margin: 15px;
+
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+    padding: 5px 16px;
+}
+
+h3 {
+    margin-left: 15px;
+}
+
+h3 {
+    margin-left: 15px;
+}

@@ -19,10 +19,12 @@ def path_and_rename(instance, filename):
     return os.path.join(upload_to, filename)
 
 class Plant(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	name = models.CharField(max_length=60)
-	description = models.CharField(max_length=200)
-	created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=60)
+    description = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    total_pictures = models.IntegerField()
+
 
 
 class Photos(models.Model):

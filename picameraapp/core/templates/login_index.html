@@ -2,31 +2,7 @@
 {% block title %}Growth - Login{% endblock title %}
 {% block content %}
 <style type="text/css" media="screen">
-.card {
-    /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    margin: 15px;
 
-}
-
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-/* Add some padding inside the card container */
-.container {
-    padding: 5px 16px;
-}
-
-h3 {
-    margin-left: 15px;
-}
-
-h3 {
-    margin-left: 15px;
-}
 </style>
 <div class="row">
     <div class="col-lg">
@@ -48,22 +24,23 @@ h3 {
         </div>
     </div>
 </div>
-<div style="overflow-x:auto;">
-    <table>
+<div style="overflow-x:auto; margin:auto; text-align: auto;">
+    <table style="text-align: auto;">
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Points</th>
-            <th>Points</th>
-            <th>Points</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Created</th>
+            <th>Total Pictures</th>
         </tr>
+        {% for plant in get_plants %}
         <tr>
-            <td>Jill</td>
-            <td>Smith</td>
-            <td>50</td>
-            <td>50</td>
-            <td>50</td>
+            <td>{{plant.name}}</td>
+            <td>{{plant.description}}</td>
+            <td>{{plant.created_at}}</td>
+            <td>{{plant.total_pictures}}</td>
+            <td><<a href="{% url 'core:upload_photo'  %}" "email me">email me</a></td>
         </tr>
+        {% endfor %}
     </table>
 </div>
 {% endblock content %}

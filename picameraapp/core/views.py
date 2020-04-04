@@ -19,6 +19,14 @@ from .forms import AddPlantForm
 class LoggedIn(TemplateView):
     template_name = 'login_index.html'
 
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(
+            *args, **kwargs)
+        user_id = self.request.user.id
+        get_plants = Plant.objects.filter(user_id=user_id).order_by('-created_at')
+        ctx['get_plants'] = get_plants
+        return ctx
+
 class Create_Plant(CreateView):
 	model = Plant
 	form_class = AddPlantForm
@@ -26,6 +34,7 @@ class Create_Plant(CreateView):
 
 	def form_valid(self, form):
 		form.instance.user_id = self.request.user.id
+		form.instance.total_pictures = 0
 		form = form.save()
 		return super().form_valid(form)
 

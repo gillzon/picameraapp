@@ -19,6 +19,10 @@ from django.db.models import (Avg,
                             Min, 
                             Sum)
 from django.contrib.auth.mixins import LoginRequiredMixin
+import RPi.GPIO as GPIO
+import time
+import picamera
+
 
 # Create your views her
 class LoggedIn(LoginRequiredMixin,TemplateView):
@@ -58,6 +62,16 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
 
     def form_valid(self, form):
         files = self.request.FILES.getlist('photo_room_image')
+        with picamera.PiCamera() as camera:
+             camera.resolution = (1280, 720)
+             camera.start_preview()
+             camera.exposure_compensation = 2
+             camera.exposure_mode = "spotlight"
+             camera.meter_mode = "matrix"
+             camera.image_effect = "gpen"
+             time.sleep(2)
+             camera.capture('foo.jpg')
+             camera.stop_preview()
         if files:
             user_id = self.request.user.id
             pk = self.kwargs['pk']
@@ -67,6 +81,12 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
             plant_info.save()
             form = form.save(commit=False)
             form.save()
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setwarnings(False)
+            GPIO.setup(18,GPIO.OUT)
+            GPIO.output(18,GPIO.HIGH)
+            time.sleep(2)
+            GPIO.output(18,GPIO.LOW)
             return super().form_valid(form)
         else:
             form = UploadPhotoForm()

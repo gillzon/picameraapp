@@ -72,15 +72,16 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
         files = self.request.FILES.getlist('photo_room_image')
         borje = self.kwargs['pk']
         with picamera.PiCamera() as camera:
+            camera.resolution = (2592, 1944)
+            camera.framerate = 15
             camera.start_preview()
-            time.sleep(2)
+            time.sleep(5)
             if not os.path.exists(MEDIA_ROOT + '/' + "images/{restfolder}/".format(restfolder=borje)):
                 os.makedirs(MEDIA_ROOT + '/' + "images/{restfolder}/".format(restfolder=borje))
             database_name = 'images' + '/' + str(borje) + '/' + "Pi_Camera" + date_now.strftime("%Y%m%d%f") + '.jpg'
             filename = MEDIA_ROOT + '/' + database_name
             camera.capture(filename)
             camera.stop_preview()
-            time.sleep(2)
             add_picture = Photos.objects.create(photo_room_image=database_name, user_id=borje)
             add_picture.save()
         if files:

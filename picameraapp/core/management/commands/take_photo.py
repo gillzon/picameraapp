@@ -9,7 +9,7 @@ def Command():
     with picamera.PiCamera() as camera:
         date_now = datetime.now()
         MEDIA_ROOT = '/home/pi/django/picameraapp/media'
-        borje = 18
+        borje = 19
         camera.resolution = (2592, 1944)
         camera.start_preview()
         time.sleep(5)

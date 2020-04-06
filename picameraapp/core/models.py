@@ -42,7 +42,6 @@ class Photos(models.Model):
 
     def save(self, *args, **kwargs):
         super(Photos, self).save(*args, **kwargs)
-        print("partyroom",self.user.id)
         #img = Image.open(self.photo_room_image.path)
         img = Image.open(self.photo_room_image.path)
         if "exif" in img.info:
@@ -68,7 +67,7 @@ class Photos(models.Model):
                     img = img.rotate(90, expand=True)
 
                 img.save(self.photo_room_image.path, exif=exif_bytes)
-        #if img.height > 860 or img.width > 1024:
-        #    output_size = (860,1024)
-        #    img.thumbnail(output_size)
-        #    img.save(self.photo_room_image.path)
+        if img.height > 1942 or img.width > 2590:
+            output_size = (1940,2588)
+            img.thumbnail(output_size)
+            img.save(self.photo_room_image.path)

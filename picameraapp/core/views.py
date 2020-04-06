@@ -73,7 +73,6 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
         borje = self.kwargs['pk']
         with picamera.PiCamera() as camera:
             camera.resolution = (2592, 1944)
-            camera.framerate = 15
             camera.start_preview()
             time.sleep(5)
             if not os.path.exists(MEDIA_ROOT + '/' + "images/{restfolder}/".format(restfolder=borje)):

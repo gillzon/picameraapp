@@ -7,6 +7,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 def Command():
     with picamera.PiCamera() as camera:
+        date_now = datetime.now()
         MEDIA_ROOT = '/home/pi/django/picameraapp/media'
         borje = 18
         camera.resolution = (2592, 1944)

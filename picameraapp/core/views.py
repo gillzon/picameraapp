@@ -74,6 +74,7 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
             camera.start_preview()
             time.sleep(2)
             files =  camera.capture(MEDIA_ROOT + date_now.strftime("%Y%m%d%f") + '.jpg')
+            print(files)
             camera.stop_preview()
         if files:
             user_id = self.request.user.id

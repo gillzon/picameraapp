@@ -73,8 +73,10 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
         with picamera.PiCamera() as camera:
             camera.start_preview()
             time.sleep(2)
-            files =  camera.capture(MEDIA_ROOT + date_now.strftime("%Y%m%d%f") + '.jpg')
-            print(files)
+            filename = MEDIA_ROOT + date_now.strftime("%Y%m%d%f") + '.jpg'
+            camera.capture(filename)
+            add_picture = Photos.objects.create(photo_room_image=filename, user_id=self.request.user.id)
+            add_picture.save()
             camera.stop_preview()
         if files:
             user_id = self.request.user.id

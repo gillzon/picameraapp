@@ -68,6 +68,7 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
 
 
     def form_valid(self, form):
+        date_now = datetime.now()
         files = self.request.FILES.getlist('photo_room_image')
         with picamera.PiCamera() as camera:
             camera.start_preview()

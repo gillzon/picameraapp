@@ -28,7 +28,7 @@ from wsgiref.util import FileWrapper
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
-import picamera
+#import picamera
 MEDIA_ROOT = settings.MEDIA_ROOT
 
 # Create your views her
@@ -71,18 +71,6 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
         date_now = datetime.now()
         files = self.request.FILES.getlist('photo_room_image')
         borje = self.kwargs['pk']
-        with picamera.PiCamera() as camera:
-            camera.resolution = (2592, 1944)
-            camera.start_preview()
-            time.sleep(5)
-            if not os.path.exists(MEDIA_ROOT + '/' + "images/{restfolder}/".format(restfolder=borje)):
-                os.makedirs(MEDIA_ROOT + '/' + "images/{restfolder}/".format(restfolder=borje))
-            database_name = 'images' + '/' + str(borje) + '/' + "Pi_Camera" + date_now.strftime("%Y%m%d%f") + '.jpg'
-            filename = MEDIA_ROOT + '/' + database_name
-            camera.capture(filename)
-            camera.stop_preview()
-            add_picture = Photos.objects.create(photo_room_image=database_name, user_id=borje)
-            add_picture.save()
         if files:
             user_id = self.request.user.id
             pk = self.kwargs['pk']

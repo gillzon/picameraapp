@@ -34,11 +34,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+CRONJOBS = [
+    ('* * * * *', 'myapp.take_photo.take_photo_job', '>> /tmp/scheduled_job.log'),
+]
 # Application definition
 
 INSTALLED_APPS = [
     'core',
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

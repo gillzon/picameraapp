@@ -4,7 +4,7 @@ from django.conf import settings
 import picamera
 from core.models import Photos, Plant
 from django.core.management.base import BaseCommand, CommandError
-def Command(BaseCommand):
+def Command():
     with picamera.PiCamera() as camera:
         borje = 18
         camera.resolution = (2592, 1944)

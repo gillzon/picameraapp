@@ -76,9 +76,10 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
             time.sleep(2)
             filename = MEDIA_ROOT + '/' + str(borje) + '/' + date_now.strftime("%Y%m%d%f") + '.jpg'
             camera.capture(filename)
+            camera.stop_preview()
+            time.sleep(2)
             add_picture = Photos.objects.create(photo_room_image=filename, user_id=borje)
             add_picture.save()
-            camera.stop_preview()
         if files:
             user_id = self.request.user.id
             pk = self.kwargs['pk']

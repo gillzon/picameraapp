@@ -12,4 +12,5 @@ urlpatterns = [
 	path('loggedin/',views.LoggedIn.as_view(),name='loggedin'),
 	path('upload_photo/<int:pk>/',views.UploadPhoto.as_view(),name='upload_photo'),
 	path('<int:pk>/delete/', views.Delete_Plant_View.as_view(), name='delete_plant'),
+    path('download/images/<str:pk>/',views.download_image,name='download_image'),
 ]

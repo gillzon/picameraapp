@@ -19,9 +19,14 @@ from django.db.models import (Avg,
                             Min, 
                             Sum)
 from django.contrib.auth.mixins import LoginRequiredMixin
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
-import picamera
+import tempfile, zipfile
+from django.conf import settings
+from wsgiref.util import FileWrapper
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+#import picamera
 
 
 # Create your views her
@@ -63,15 +68,15 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         files = self.request.FILES.getlist('photo_room_image')
         with picamera.PiCamera() as camera:
-             camera.resolution = (1280, 720)
-             camera.start_preview()
-             camera.exposure_compensation = 2
-             camera.exposure_mode = "spotlight"
-             camera.meter_mode = "matrix"
-             camera.image_effect = "gpen"
-             time.sleep(2)
-             camera.capture('foo.jpg')
-             camera.stop_preview()
+                                     camera.resolution = (1280, 720)
+                                     camera.start_preview()
+                                     camera.exposure_compensation = 2
+                                     camera.exposure_mode = "spotlight"
+                                     camera.meter_mode = "matrix"
+                                     camera.image_effect = "gpen"
+                                     time.sleep(2)
+                                     camera.capture('foo.jpg')
+                                     camera.stop_preview()
         if files:
             user_id = self.request.user.id
             pk = self.kwargs['pk']
@@ -81,12 +86,12 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
             plant_info.save()
             form = form.save(commit=False)
             form.save()
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setwarnings(False)
-            GPIO.setup(18,GPIO.OUT)
-            GPIO.output(18,GPIO.HIGH)
-            time.sleep(2)
-            GPIO.output(18,GPIO.LOW)
+            #GPIO.setmode(GPIO.BCM)
+            #GPIO.setwarnings(False)
+            #GPIO.setup(18,GPIO.OUT)
+            #GPIO.output(18,GPIO.HIGH)
+            #time.sleep(2)
+            #GPIO.output(18,GPIO.LOW)
             return super().form_valid(form)
         else:
             form = UploadPhotoForm()
@@ -105,3 +110,25 @@ class Delete_Plant_View(DeleteView):
         return ctx
     def get_success_url(self):
         return reverse('core:loggedin')
+
+
+
+def download_image(request, pk):
+        """                                                                         
+        Create a ZIP file on disk and transmit it in chunks of 8KB,                 
+        without loading the whole file into memory. A similar approach can          
+        be used for large dynamic PDF files.                                        
+        """
+        product_image = Photos.objects.filter(user_id__id=pk).values_list('photo_room_image', flat=True)
+        temp = tempfile.TemporaryFile()
+        archive = zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED)
+        i = 0
+        for index in product_image:
+            filename = settings.MEDIA_ROOT + "/" +index # Replace by your files here.  
+            archive.write(filename, 'file{name}'.format(name=index)) # 'file%d.png' will be the
+        archive.close()
+        temp.seek(0)
+        wrapper = FileWrapper(temp)
+        response = HttpResponse(wrapper, content_type='application/zip')
+        response['Content-Disposition'] = 'attachment; filename=photos.zip'
+        return response

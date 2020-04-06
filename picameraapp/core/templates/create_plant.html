@@ -14,9 +14,12 @@
                 {{form.name}}
             </div>
             <div class="form-group">
-                {% csrf_token %}
                 <label for="email">Description:</label>
                 {{form.description}}
+            </div>
+            <div class="form-group">
+                <label for="email">Raspberry Pi Camera</label>
+                {{form.active_pi}}
             </div>
             <div class="form-group">
                 <div class="col-sm">

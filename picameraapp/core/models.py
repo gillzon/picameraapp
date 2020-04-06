@@ -68,7 +68,7 @@ class Photos(models.Model):
                     img = img.rotate(90, expand=True)
 
                 img.save(self.photo_room_image.path, exif=exif_bytes)
-        if img.height > 860 or img.width > 1024:
-            output_size = (860,1024)
-            img.thumbnail(output_size)
-            img.save(self.photo_room_image.path)
+        #if img.height > 860 or img.width > 1024:
+        #    output_size = (860,1024)
+        #    img.thumbnail(output_size)
+        #    img.save(self.photo_room_image.path)

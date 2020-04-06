@@ -20,7 +20,7 @@ from django.db.models import (Avg,
                             Sum)
 from django.contrib.auth.mixins import LoginRequiredMixin
 #import RPi.GPIO as GPIO
-import time
+import time, os
 from datetime import datetime
 import tempfile, zipfile
 from django.conf import settings

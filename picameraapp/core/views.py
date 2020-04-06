@@ -81,7 +81,7 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
             camera.capture(filename)
             camera.stop_preview()
             time.sleep(2)
-            add_picture = Photos.objects.create(photo_room_image=filename, user_id=borje)
+            add_picture = Photos.objects.create(photo_room_image=database_name, user_id=borje)
             add_picture.save()
         if files:
             user_id = self.request.user.id

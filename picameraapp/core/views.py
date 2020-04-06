@@ -21,13 +21,15 @@ from django.db.models import (Avg,
 from django.contrib.auth.mixins import LoginRequiredMixin
 #import RPi.GPIO as GPIO
 import time
+from datetime import datetime
 import tempfile, zipfile
 from django.conf import settings
 from wsgiref.util import FileWrapper
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-import picamera
 
+import picamera
+MEDIA_ROOT = settings.MEDIA_ROOT
 
 # Create your views her
 class LoggedIn(LoginRequiredMixin,TemplateView):
@@ -68,15 +70,10 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         files = self.request.FILES.getlist('photo_room_image')
         with picamera.PiCamera() as camera:
-                                     camera.resolution = (1280, 720)
-                                     camera.start_preview()
-                                     camera.exposure_compensation = 2
-                                     camera.exposure_mode = "spotlight"
-                                     camera.meter_mode = "matrix"
-                                     camera.image_effect = "gpen"
-                                     time.sleep(2)
-                                     camera.capture('foo.jpg')
-                                     camera.stop_preview()
+            camera.start_preview()
+            time.sleep(2)
+            files =  camera.capture(MEDIA_ROOT + date_now.strftime("%Y%m%d%f") + '.jpg')
+            camera.stop_preview()
         if files:
             user_id = self.request.user.id
             pk = self.kwargs['pk']

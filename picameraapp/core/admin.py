@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Photos, Plants
+from .models import Photos, Plant
 
 # Register your models here.
 admin.site.register(Photos)

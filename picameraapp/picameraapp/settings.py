@@ -35,7 +35,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CRONJOBS = [
-    ('* * * * *', 'myapp.take_photo.take_photo_job', '>> /tmp/scheduled_job.log'),
+    ('0 5-21 * * *', 'myapp.take_photo.take_photo_job', '>> /tmp/scheduled_job.log'),
 ]
 # Application definition
 

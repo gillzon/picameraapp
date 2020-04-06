@@ -13,6 +13,7 @@ body {
     background: #fff;
 }
 
+
 /* LINKS */
 
 a:link, a:visited {
@@ -489,7 +490,10 @@ input[type=submit][disabled].default,
 input[type=button][disabled].default {
     opacity: 0.4;
 }
-
+.form-control-checkbox {
+    width: 20px;
+    height: 20px;
+}
 
 /* MODULES */
 

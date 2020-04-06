@@ -30,7 +30,9 @@
             <th>Name</th>
             <th>Description</th>
             <th>Created</th>
-            <th>Total Pictures</th>
+            <th>Total Photos</th>
+            <th>Download Photos</th>
+            <th>Delete Photos</th>
         </tr>
         {% for plant in get_plants %}
         <tr>
@@ -39,6 +41,7 @@
             <td>{{plant.created_at}}</td>
             <td>{{plant.total_pictures}}</td>
             <td><a href="{% url 'core:upload_photo' plant.id %}">Uppload Photo</a></td>
+            <td><a href="{% url 'core:download_image' plant.id %}">Download Photos</a></td>
             <td><a href="{% url 'core:delete_plant' plant.id %}">Delete Plant</a></td>
             
         </tr>

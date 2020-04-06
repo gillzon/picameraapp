@@ -12,9 +12,12 @@ class AddPlantForm(forms.ModelForm):
 	description = forms.CharField(required=True)
 	description.widget.attrs['class'] = 'form-control'
 	description.widget.attrs['placeholder'] = 'Description of the plant you are waiting to grow'
+
+	active_pi = forms.BooleanField(required=False)
+	active_pi.widget.attrs['class'] = 'form-control-checkbox'
 	class Meta:
 		model = Plant
-		fields = ['name','description']
+		fields = ['name','description', 'active_pi']
 
 class UploadPhotoForm(forms.ModelForm):
     class Meta:

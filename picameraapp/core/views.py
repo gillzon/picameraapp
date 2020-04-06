@@ -70,15 +70,13 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         date_now = datetime.now()
         files = self.request.FILES.getlist('photo_room_image')
-        _pk = self.request.user.id
-        get_pk = User.objects.get(id=_pk)
-
+        borje = self.kwargs['pk']
         with picamera.PiCamera() as camera:
             camera.start_preview()
             time.sleep(2)
             filename = MEDIA_ROOT + date_now.strftime("%Y%m%d%f") + '.jpg'
             camera.capture(filename)
-            add_picture = Photos.objects.create(photo_room_image=filename, user_id=get_pk.id)
+            add_picture = Photos.objects.create(photo_room_image=filename, user_id=borje)
             add_picture.save()
             camera.stop_preview()
         if files:

@@ -74,9 +74,7 @@ class UploadPhoto(LoginRequiredMixin,CreateView):
         with picamera.PiCamera() as camera:
             camera.start_preview()
             time.sleep(2)
-            if not os.path.exists("{restfolder}/".format(restfolder=borje)):
-                os.makedirs("/{restfolder}/".format(restfolder=borje))
-            filename = '/' + str(borje) + '/' + date_now.strftime("%Y%m%d%f") + '.jpg'
+            filename = 'images/' + date_now.strftime("%Y%m%d%f") + '.jpg'
             camera.capture(filename)
             camera.stop_preview()
             time.sleep(2)

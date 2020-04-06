@@ -28,7 +28,7 @@ from wsgiref.util import FileWrapper
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
-#import picamera
+import picamera
 MEDIA_ROOT = settings.MEDIA_ROOT
 
 # Create your views her

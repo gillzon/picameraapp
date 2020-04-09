@@ -11,6 +11,7 @@ def Command():
         MEDIA_ROOT = '/home/pi/django/picameraapp/media'
         borje = 21
         camera.resolution = (2592, 1944)
+        camera.brightness = 38
         camera.start_preview()
         time.sleep(5)
         if not os.path.exists('/home/pi/django/picameraapp/media/' + 'images/{restfolder}/'.format(restfolder=borje)):

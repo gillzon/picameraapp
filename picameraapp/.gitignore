@@ -32,7 +32,7 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-
+*.sqlite3
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -57,7 +57,7 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
+*.sqlite3
 
 # Flask stuff:
 instance/

@@ -10,6 +10,9 @@ def Command():
         date_now = datetime.now()
         MEDIA_ROOT = '/home/pi/django/picameraapp/media'
         borje = 21
+        get_plant = Plant.objects.get(id=21)
+        get_plant.total_pictures = get_plant.total_pictures + 1
+        get_plant.save()
         camera.resolution = (2592, 1944)
         camera.brightness = 38
         camera.start_preview()
